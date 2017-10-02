@@ -80,6 +80,10 @@ char * mystrchr(char * s1, char c) {
     int i;
     int len = mystrlen(s1);
 
+    /*
+        Iterates through s1 over its length and returns the location of the pointer if c occurs in s1.
+        Otherwise, returns null.
+    */
     for (i = 0; i < len; i++) {
         if (s1[i] == c) {
             *p = s1[i];
@@ -122,4 +126,15 @@ int main() {
     printf("\nTesting strchr(%s, 'z'):\n", s1);
     printf("[standard]: %p\n", strchr(s1, 'z'));
     printf("[mine]: %p\n", mystrchr(s1, 'z'));
+
+    printf("\nTesting strcmp:\n");
+    printf("Comparing 'ab' to 'abc':\n");
+    printf("[standard]: %d", strcmp('ab', 'abc'));
+    printf("[mine]: %d", mystrcmp('ab', 'abc'));
+    printf("Comparing 'abc' to 'ab':\n");
+    printf("[standard]: %d", strcmp('abc', 'ab'));
+    printf("[mine]: %d", mystrcmp('abc', 'ab'));
+    printf("Comparing 'abc' to 'abc':\n");
+    printf("[standard]: %d", strcmp('abc', 'abc'));
+    printf("[mine]: %d", mystrcmp('abc', 'abc'));
 }
