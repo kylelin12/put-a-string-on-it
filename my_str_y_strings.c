@@ -22,9 +22,7 @@ char * mystrncpy(char * dest, char * source, int n) {
     while (i < n)
         dest[i] = '\0';
 
-    /*
-        Return the result
-    */
+    // Return the result
     return dest;
 }
 
@@ -95,7 +93,7 @@ char * mystrchr(char * s1, char c) {
 }
 
 int main() {
-    char s1[5];
+    char s1[5]; // Empty char array
     char s2[] = "hello";
     char s3[] = "goodbye";
 
@@ -127,8 +125,8 @@ int main() {
     printf("[standard]: %p\n", strchr(s1, 'z'));
     printf("[mine]: %p\n", mystrchr(s1, 'z'));
 
-    char ab[] = "ab";
-    char abc[] = "abc";
+    char ab[] = "ab"; // String "ab" used to test mystrcmp()
+    char abc[] = "abc"; // String "abc" used to test mystrcmp()
 
     printf("\nTesting strcmp:\n");
     printf("Comparing 'ab' to 'abc':\n");
