@@ -81,14 +81,13 @@ char * mystrchr(char * s1, char c) {
     int len = mystrlen(s1);
 
     for (i = 0; i < len; i++) {
-        if (s1[i] == c)
-            break;
-        else {
-            *p = s1[i + 1];
+        if (s1[i] == c) {
+            *p = s1[i];
+            return p;
         }
     }
-
-    return p;
+    
+    return 0;
 }
 
 int main() {
@@ -120,4 +119,7 @@ int main() {
     printf("[standard]: %p\n", strchr(s2, 'o'));
     printf("[mine]: %p\n", strchr(s2, 'o'));
 
+    printf("\nTesting strchr(%s, 'z'):\n", s1);
+    printf("[standard]: %p\n", strchr(s1, 'z'));
+    printf("[mine]: %p\n", mystrchr(s1, 'z'));
 }
