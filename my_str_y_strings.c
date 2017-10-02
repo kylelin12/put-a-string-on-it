@@ -51,26 +51,26 @@ char * mystrncat(char * dest, char * source, int n) {
 // Compares each character of s1 with s2 and returns
 // 1 if s1 > s2, -1 if s1 < s2, and 0 if s1 == s2
 int mystrcmp(char * s1, char * s2) {
-    int i;
-    int len = mystrlen(s1);
-
     /*
-        Goes through the length of the first string, comparing values at each memory location.
-        If the locations contain different values, compare the two.
-        If they're both terminating 0s, you've already gone through the length of both strings
-        and they're therefore the same so a 0 is returned.
+        While s1 is not zero,
+        If s2 is not zero or s1 is greater than s2, return 1
+        If s2 is greater than s1, return -1
+        Otherwise increment both s1 and s2 and compare the next two pointers
     */
-    for (i = 0; i < len; i++) {
-        if (s1[i] != s2[i])
-            if (s1[i] > s2[i])
-                return 1;
-            else
-                return -1;
-        if (s1[i] == '\0' || s2[i] == '\0')
-            return 0;
+    while (*s1) {
+        if (!* s2 || * s1 > * s2)
+            return 1;
+        if (* s2 > * s1)
+            return -1;
+        s1++;
+        s2++;
     }
     
-    // Return 0 just in case a case is missed.
+    // If there is anything left in s2, it is greater than s1 so return -1.
+    if (* s2)
+        return -1;
+
+    // Return 0 just in all other cases.
     return 0;
 }
 
@@ -127,14 +127,17 @@ int main() {
     printf("[standard]: %p\n", strchr(s1, 'z'));
     printf("[mine]: %p\n", mystrchr(s1, 'z'));
 
+    char ab[] = "ab";
+    char abc[] = "abc";
+
     printf("\nTesting strcmp:\n");
     printf("Comparing 'ab' to 'abc':\n");
-    printf("[standard]: %d", strcmp('ab', 'abc'));
-    printf("[mine]: %d", mystrcmp('ab', 'abc'));
+    printf("[standard]: %d\n", strcmp(ab, abc));
+    printf("[mine]: %d\n", mystrcmp(ab, abc));
     printf("Comparing 'abc' to 'ab':\n");
-    printf("[standard]: %d", strcmp('abc', 'ab'));
-    printf("[mine]: %d", mystrcmp('abc', 'ab'));
+    printf("[standard]: %d\n", strcmp(abc, ab));
+    printf("[mine]: %d\n", mystrcmp(abc, ab));
     printf("Comparing 'abc' to 'abc':\n");
-    printf("[standard]: %d", strcmp('abc', 'abc'));
-    printf("[mine]: %d", mystrcmp('abc', 'abc'));
+    printf("[standard]: %d\n", strcmp(abc, abc));
+    printf("[mine]: %d\n", mystrcmp(abc, abc));
 }
