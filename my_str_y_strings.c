@@ -120,7 +120,7 @@ char * mystrstr(char *s1, char *s2) {
 
         /*
             If looking_for is not zero at the end of the while loop, the substring
-            is a match so return the start location, start_loc.
+            is a match so return the start location before looping, s1.
         */
         if (!*looking_for)
             return s1;
