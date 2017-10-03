@@ -26,6 +26,11 @@ char * mystrncpy(char *dest, char *source, int n) {
     return dest;
 }
 
+// Copies the entire source string over to dest using mystrncpy()
+char * mystrcpy(char *dest, char *source) {
+    return mystrncpy(dest, source, mystrlen(source));
+}
+
 // Appends the first 'n' characters from source onto the end of dest
 // and returns dest.
 char * mystrncat(char *dest, char *source, int n) {
@@ -44,6 +49,11 @@ char * mystrncat(char *dest, char *source, int n) {
 
     // Return the result
     return dest;
+}
+
+// Appends the entire source string after dest using mystrncat()
+char * mystrcat(char *dest, char *source) {
+    return mystrncat(dest, source, mystrlen(source));
 }
 
 // Compares each character of s1 with s2 and returns
@@ -89,7 +99,36 @@ char * mystrchr(char *s1, char c) {
         }
     }
     
-    return 0;
+    return NULL;
+}
+
+// Returns a pointer located at the first occurance of substring s2 in s1.
+char * mystrstr(char *s1, char *s2) {
+    // While s1 is not 0
+    while (*s1) {
+
+        char *start_loc = s1;
+        char *looking_for = s2;
+        /* 
+            While start_loc/looking_for are both not 0 and start_loc == looking_for
+            Increment both pointers
+        */
+        while (*start_loc && *looking_for && *start_loc == *looking_for) {
+            start_loc++;
+            looking_for++;
+        }
+
+        /*
+            If looking_for is not zero at the end of the while loop, the substring
+            is a match so return the start location, start_loc.
+        */
+        if (!*looking_for)
+            return s1;
+
+        // Otherwise, increment the s1 pointer and check again while s1 is not zero.
+        s1 = start_loc + 1;
+    }
+    return NULL;
 }
 
 int main() {
@@ -138,4 +177,16 @@ int main() {
     printf("Comparing 'abc' to 'abc':\n");
     printf("[standard]: %d\n", strcmp(abc, abc));
     printf("[mine]: %d\n", mystrcmp(abc, abc));
+
+    // Testing for mystrstr
+
+    char testss[] = "Hello my name is Ninooo";
+
+    char *strstrtest = strstr(testss, "Nino");
+    char *mystrstrtest = mystrstr(testss, "Nino");
+
+    printf("\nTesting strstr:\n");
+    printf("[standard]: %p\n", strstrtest);
+    printf("[mine]: %p\n", mystrstrtest);
+    printf("Memory addresses identical: %s\n", strstrtest == mystrstrtest ? "True" : "False");
 }
