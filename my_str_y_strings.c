@@ -9,7 +9,7 @@ int mystrlen(char *strngy) {
 }
 
 // Copies the first 'n' characters from source onto dest and returns dest
-char *mystrncpy(char *dest, char *source, int n) {
+char * mystrncpy(char *dest, char *source, int n) {
     int i;
 
     /*
@@ -28,7 +28,7 @@ char *mystrncpy(char *dest, char *source, int n) {
 
 // Appends the first 'n' characters from source onto the end of dest
 // and returns dest.
-char *mystrncat(char *dest, char *source, int n) {
+char * mystrncat(char *dest, char *source, int n) {
     int i;
     int len = mystrlen(dest);
 
@@ -73,7 +73,7 @@ int mystrcmp(char *s1, char *s2) {
 }
 
 // Returns a pointer located at the first occurance of c in s1.
-char *mystrchr(char *s1, char c) {
+char * mystrchr(char *s1, char c) {
     char *p;
     int i;
     int len = mystrlen(s1);
