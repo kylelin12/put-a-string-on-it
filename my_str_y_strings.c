@@ -2,19 +2,19 @@
 #include <string.h>
 
 // Returns the length of the string as an integer
-int mystrlen(char * strngy) {
+int mystrlen(char *strngy) {
     char *i;
     for (i=strngy; *i; i++);
     return i - strngy;
 }
 
 // Copies the first 'n' characters from source onto dest and returns dest
-char * mystrncpy(char * dest, char * source, int n) {
+char *mystrncpy(char *dest, char *source, int n) {
     int i;
 
     /*
         While a terminating 0 doesn't exist at that location, copy from source into dest.
-        If a termnating 0 is reached before 'n' entries are copied, continue on by placing 
+        If a terminating 0 is reached before 'n' entries are copied, continue on by placing 
         terminating 0s.
     */
     for (i=0; i < n && source[i] != '\0'; i++)
@@ -28,14 +28,14 @@ char * mystrncpy(char * dest, char * source, int n) {
 
 // Appends the first 'n' characters from source onto the end of dest
 // and returns dest.
-char * mystrncat(char * dest, char * source, int n) {
+char *mystrncat(char *dest, char *source, int n) {
     int i;
     int len = mystrlen(dest);
 
     /*
         While a terminating 0 doesn't exist at that location, append the next character
-        from the source string after the destination string. Continue until a terminating
-        zero is reached or 'n' characters have been appended.
+        from the source string after the destination string. Continue until either a 
+        terminating zero is reached or 'n' characters have been appended.
     */
     for (i=0; i < n && source[i] != '\0'; i++)
         dest[i + len] = source[i];
@@ -48,7 +48,7 @@ char * mystrncat(char * dest, char * source, int n) {
 
 // Compares each character of s1 with s2 and returns
 // 1 if s1 > s2, -1 if s1 < s2, and 0 if s1 == s2
-int mystrcmp(char * s1, char * s2) {
+int mystrcmp(char *s1, char *s2) {
     /*
         While s1 is not zero,
         If s2 is not zero or s1 is greater than s2, return 1
@@ -56,25 +56,25 @@ int mystrcmp(char * s1, char * s2) {
         Otherwise increment both s1 and s2 and compare the next two pointers
     */
     while (*s1) {
-        if (!* s2 || * s1 > * s2)
+        if (!*s2 || *s1 > *s2)
             return 1;
-        if (* s2 > * s1)
+        if (*s2 > *s1)
             return -1;
         s1++;
         s2++;
     }
     
     // If there is anything left in s2, it is greater than s1 so return -1.
-    if (* s2)
+    if (*s2)
         return -1;
 
-    // Return 0 just in all other cases.
+    // Return 0 in all other cases.
     return 0;
 }
 
 // Returns a pointer located at the first occurance of c in s1.
-char * mystrchr(char * s1, char c) {
-    char * p;
+char *mystrchr(char *s1, char c) {
+    char *p;
     int i;
     int len = mystrlen(s1);
 
