@@ -5,7 +5,7 @@
 #include "my_str_y_strings.h"
 
 int main() {
-    char s1[5]; // Empty char array
+    char s1[50]; // Empty char array
     char s2[] = "hello";
     char s3[] = "goodbye";
 
